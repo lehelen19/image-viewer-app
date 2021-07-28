@@ -22,9 +22,19 @@ def forward(image_num):
     # want to take the image that's already there and get rid of it
     my_label.grid_forget()
 
-    # creating next image
+    # creating next image and changing button meanings
     my_label = Label(image=img_list[image_num-1])
+    button_forward = Button(root, text=">>", command=lambda: forward(image_num+1))
+    button_back = Button(root, text="<<", command=lambda: back(image_num-1))
+
+    # exception: end of list
+    if image_num == len(img_list):
+        button_forward = Button(root, text=">>", state=DISABLED)
+
+    # placing new image and buttons on screen
     my_label.grid(row=0, column=0, columnspan=3)
+    button_back.grid(row=1, column=0)
+    button_forward.grid(row=1, column=2)
 
 def back():
     global my_label
