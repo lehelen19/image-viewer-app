@@ -5,10 +5,12 @@ root = Tk()
 root.title('Adding Icons and Images')
 
 my_img1 = ImageTk.PhotoImage(Image.open('C:/Users/Helen/Desktop/cute.jpg'))
-my_img2 = ImageTk.PhotoImage(Image.open('C:/Users/Helen/Desktop/mit.png'))
+my_img2 = ImageTk.PhotoImage(Image.open('C:/Users/Helen/OneDrive/Pictures/as.jpg'))
 my_img3 = ImageTk.PhotoImage(Image.open('C:/Users/Helen/Desktop/saved/swag space.jpg'))
 
 img_list = [my_img1, my_img2, my_img3]
+
+status = Label(root, text="Image 1 of " + str(len(img_list)), bd=1, relief=SUNKEN, anchor=E)
 
 my_label = Label(image=my_img1)
 my_label.grid(row=0, column=0, columnspan=3) # Below the image, 3 buttons
@@ -36,6 +38,10 @@ def forward(image_num):
     button_back.grid(row=1, column=0)
     button_forward.grid(row=1, column=2)
 
+    # Updating the status bar
+    status = Label(root, text="Image 1 of " + str(len(img_list)), bd=1, relief=SUNKEN, anchor=E)
+    status.grid(row=2, column=0, columnspan=3, sticky=W+E)
+
 def back(image_num):
     global my_label
     global button_forward
@@ -62,6 +68,9 @@ button_forward = Button(root, text=">>", command=lambda: forward(2))
 # Placing buttons on screen
 button_back.grid(row=1, column=0)
 button_exit.grid(row=1, column=1)
-button_forward.grid(row=1, column=2)
+button_forward.grid(row=1, column=2, pady=10)
+
+# Placing status bar on screen
+status.grid(row=2, column=0, columnspan=3, sticky=W+E)
 
 root.mainloop()
